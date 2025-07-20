@@ -1,0 +1,65 @@
+<odoo>
+  <template id="custom_footer_haymi" inherit_id="website.layout">
+    <!-- Load Font Awesome -->
+    <xpath expr="//head" position="inside">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    </xpath>
+
+    <xpath expr="//div[hasclass('o_footer_copyright')]" position="before">
+      <t t-set="no_copyright" t-value="True" />
+    </xpath>
+
+    <xpath expr="//div[@id='footer']" position="replace">
+      <div class="footer-basic custom-footer-haymi">
+        <footer>
+          <div class="container-haymi-footer">
+
+            <!-- Social Media Icons -->
+            <div class="footer-row" style="justify-content:center; margin-top: 20px;">
+              <div class="footer-col">
+                <div class="social social-horizontal center-powered" role="list">
+                  <a href="https://www.instagram.com/your_foodstore" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://www.facebook.com/your_foodstore" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="https://twitter.com/your_foodstore" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/company/your_foodstore" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://www.youtube.com/your_foodstore" target="_blank" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                  <a href="https://www.tiktok.com/@your_foodstore" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="footer-row footer-links-row">
+              <div class="footer-col">
+                <div class="footer-powered-logos center-powered-logos">
+                  <!-- Your Foodstore Logo Placeholder -->
+                  <!-- Remove or replace src with your logo file path once you have it -->
+                  <img t-att-src="'/food_ordering/static/img/logo.jpg'"
+     alt="Foodstore Logo"
+     style="height: 100px; width: auto;"
+     class="footer-logo uniform-powered-logo"/>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-copyright center-copyright" style="margin-top: 40px;">
+              Copyright 2025 © FOODICTED🤤. All Rights Reserved.
+            </div>
+          </div>
+        </footer>
+      </div>
+    </xpath>
+  </template>
+</odoo>

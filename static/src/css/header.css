@@ -1,0 +1,63 @@
+/* food_ordering/static/src/css/navbar.css */
+
+.navbar {
+  background: linear-gradient(180deg, #e6f2ff 0%, #cce7ff 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar-brand img {
+  height: 60px;
+  width: auto;
+}
+
+.navbar-brand span {
+  color: #000 !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+.navbar-nav .nav-link {
+  color: #000 !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #0073e6 !important;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler-icon {
+  filter: none;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #e63946;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 2px 6px;
+  user-select: none;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav .nav-link {
+    color: #000 !important;
+  }
+
+  .navbar {
+    background: #ffffff !important;
+  }
+}

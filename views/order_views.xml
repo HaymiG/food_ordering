@@ -1,0 +1,92 @@
+<odoo>
+    <!-- Sequence for Order Reference -->
+    <record id="seq_food_order" model="ir.sequence">
+        <field name="name">Food Order</field>
+        <field name="code">food_ordering.order</field>
+        <field name="prefix">FO</field>
+        <field name="padding">5</field>
+        <field name="implementation">standard</field>
+    </record>
+
+    <!-- Order Tree View -->
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">order.tree</field>
+        <field name="model">food_ordering.order</field>
+        <field name="arch" type="xml">
+            <tree string="Orders">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="status"/>
+                <field name="total_price"/>
+                <field name="payment_method"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Order Form View -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">order.form</field>
+        <field name="model">food_ordering.order</field>
+        <field name="arch" type="xml">
+            <form string="Order Form">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary"
+                        modifiers='{"invisible": ["!", ["can_confirm"]]}'/>
+                    <button name="action_prepare" type="object" string="Prepare" class="btn-warning"
+                        modifiers='{"invisible": ["!", ["can_prepare"]]}'/>
+                    <button name="action_deliver" type="object" string="Deliver" class="btn-info"
+                        modifiers='{"invisible": ["!", ["can_deliver"]]}'/>
+                    <button name="action_done" type="object" string="Done" class="btn-success"
+                        modifiers='{"invisible": ["!", ["can_done"]]}'/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="customer_id"/>
+                        <field name="status"/>
+                        <field name="total_price" readonly="1"/>
+
+                        <field name="delivery_address"/>
+                        <field name="payment_method"/>
+
+                        <!-- Invisible helper fields for button visibility -->
+                        <field name="can_confirm" modifiers='{"invisible": true}'/>
+                        <field name="can_prepare" modifiers='{"invisible": true}'/>
+                        <field name="can_deliver" modifiers='{"invisible": true}'/>
+                        <field name="can_done" modifiers='{"invisible": true}'/>
+                    </group>
+
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="order_line_ids">
+                                <tree editable="bottom" string="Order Lines">
+                                    <field name="food_item_id"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Order Line Tree View -->
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="name">order.line.tree</field>
+        <field name="model">food_ordering.order_line</field>
+        <field name="arch" type="xml">
+            <tree string="Order Lines">
+                <field name="order_id"/>
+                <field name="food_item_id"/>
+                <field name="quantity"/>
+                <field name="price_unit"/>
+                <field name="price_subtotal"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,26 @@
+.section-offers .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.section-offers .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.section-offers .card:hover .card-title {
+  color: #ff5722;
+  transition: color 0.3s ease;
+}
+.section-offers .card-img-top {
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+.offer-card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="about_page_template" name="About Us - Custom Design">
+  <t t-call="website.layout">
+
+    <link rel="stylesheet" href="/food_ordering/static/src/css/about_styles.css"/>
+    <script type="text/javascript" src="/food_ordering/static/src/js/about_scripts.js"></script>
+
+    <style>
+      /* Navy gradient background matching navbar */
+      .section-about {
+        background: linear-gradient(180deg, #0a1a2b 0%, #071224 100%);
+        color: #0a1a2b; /* navy text */
+        border-radius: 20px;
+        padding: 60px 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Animate fade-in and slide-up for the entire section */
+      .section-about {
+        animation: fadeSlideUp 1s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @keyframes fadeSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Title styling */
+      .section-about h1.display-4 {
+        color: #0a1a2b; /* navy */
+        font-weight: 800;
+        animation: titleGlow 2s ease infinite alternate;
+      }
+
+      /* Subtle glowing animation for the title */
+      @keyframes titleGlow {
+        0% {
+          text-shadow: 0 0 5px #071224;
+        }
+        100% {
+          text-shadow: 0 0 20px #0a1a2b;
+        }
+      }
+
+      /* Description box with navy edges and background */
+.about-description {
+  background: white; /* 🔁 Changed from translucent navy to solid white */
+  border: 2px solid #0a1a2b; /* navy border */
+  border-radius: 15px;
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(10, 26, 43, 0.25);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #0a1a2b; /* navy text */
+  animation: fadeSlideUp 1.5s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  animation-delay: 0.5s;
+}
+
+
+      /* Button styling with navy base */
+      .btn-menu {
+        background-color: #0a1a2b;
+        color: white;
+        border: 2px solid #0a1a2b;
+        font-weight: 600;
+        padding: 14px 36px;
+        border-radius: 50px;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        transition: all 0.3s ease-in-out;
+        z-index: 10;
+      }
+
+      .btn-menu:hover {
+        background-color: #071224;
+        border-color: #071224;
+        color: white;
+      }
+
+      /* Bubble container behind button */
+      .btn-menu .bubbles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 140%;
+        height: 140%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        overflow: visible;
+        z-index: 0;
+      }
+
+      /* Individual bubbles */
+      .btn-menu .bubble {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: bubbleMove 4s infinite ease-in-out;
+        opacity: 0.6;
+      }
+
+      .btn-menu .bubble:nth-child(1) {
+        width: 20px;
+        height: 20px;
+        top: 10%;
+        left: 20%;
+        animation-delay: 0s;
+      }
+      .btn-menu .bubble:nth-child(2) {
+        width: 15px;
+        height: 15px;
+        top: 40%;
+        left: 60%;
+        animation-delay: 1s;
+      }
+      .btn-menu .bubble:nth-child(3) {
+        width: 10px;
+        height: 10px;
+        top: 75%;
+        left: 30%;
+        animation-delay: 2s;
+      }
+      .btn-menu .bubble:nth-child(4) {
+        width: 25px;
+        height: 25px;
+        top: 50%;
+        left: 80%;
+        animation-delay: 3s;
+      }
+
+      @keyframes bubbleMove {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(-15px) scale(1.1);
+          opacity: 0.9;
+        }
+      }
+
+      /* Image styling */
+      .section-about img {
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        max-width: 100%;
+      }
+    </style>
+
+    <section class="section section-about bg-light py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Image on the left side -->
+          <div class="col-md-6">
+            <img src="/food_ordering/static/img/logo.jpg" alt="Delicious Food" class="img-fluid rounded shadow"/>
+          </div>
+          <div class="col-md-6">
+            <h1 class="display-4 mb-4">Welcome to FOODICTED🤤</h1>
+            <div class="about-description">
+              <p>
+                At FOODICTED🤤, we bring the best meals right to your doorstep.  
+                Our passion is serving fresh, tasty, and fast food from a wide variety of cuisines.
+              </p>
+              <p>
+                Whether you’re craving local dishes or international favorites, we’ve got you covered.
+                Enjoy seamless online ordering with quick delivery.
+              </p>
+            </div>
+            <a href="/menu" class="btn-menu mt-3">
+              Explore Our Menu
+              <div class="bubbles">
+                <span class="bubble"></span>
+                <span class="bubble"></span>
+                <span class="bubble"></span>
+                <span class="bubble"></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </t>
+</template>
+
+  <!-- ✅ Offers Page Template -->
+  <template id="offers_page_template" name="Special Offers - Custom Design">
+    <t t-call="website.layout">
+
+      <!-- ✅ Load Offers CSS and JS -->
+      <link rel="stylesheet" href="/food_ordering/static/css/offer_styles.css"/>
+      <script type="text/javascript" src="/food_ordering/static/src/js/offer_scripts.js"></script>
+
+      <section class="section section-offers py-5">
+        <div class="container">
+          <h1 class="display-4 text-center mb-5">Hot Deals &amp; Special Offers</h1>
+          <div class="row g-4">
+            <!-- ✅ Offer 1 -->
+            <div class="col-md-4">
+              <div class="card shadow-sm h-100 offer-card" data-offer="Family Meal Deal">
+                <img src="/food_ordering/static/img/family_meal.jpg" class="card-img-top" alt="Family Meal"/>
+                <div class="card-body">
+                  <h5 class="card-title">Family Meal Deal</h5>
+                  <p class="card-text">Get 20% off on all family combo meals this weekend only!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ✅ Offer 2 -->
+            <div class="col-md-4">
+              <div class="card shadow-sm h-100 offer-card" data-offer="Free Dessert">
+                <img src="/food_ordering/static/img/dessert.jpg" class="card-img-top" alt="Free Dessert"/>
+                <div class="card-body">
+                  <h5 class="card-title">Free Dessert</h5>
+                  <p class="card-text">Order any main course and get a free dessert of your choice.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ✅ Offer 3 -->
+            <div class="col-md-4">
+              <div class="card shadow-sm h-100 offer-card" data-offer="Lunch Special">
+                <img src="/food_ordering/static/img/lunch_special.jpg" class="card-img-top" alt="Lunch Special"/>
+                <div class="card-body">
+                  <h5 class="card-title">Lunch Special</h5>
+                  <p class="card-text">Enjoy our lunch specials at 15% off from 12 PM to 3 PM daily.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </t>
+  </template>
+</odoo>
+

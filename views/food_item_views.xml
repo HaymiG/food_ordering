@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_food_item_tree" model="ir.ui.view">
+        <field name="name">food.item.tree</field>
+        <field name="model">food_ordering.food_item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="restaurant_id"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

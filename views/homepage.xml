@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="food_ordering_homepage" name="Food Ordering Homepage">
+    <t t-call="website.layout">
+
+      <style>
+        /* ========= Hero Section ========= */
+        .hero-section {
+          background: transparent;
+          border: 4px solid #0a1a2b;
+          color: #0a1a2b;
+          padding: 80px 30px;
+          text-align: center;
+          border-radius: 20px;
+          margin-bottom: 50px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .hero-section h1 {
+          font-weight: 800;
+          font-size: 3.5rem;
+          margin-bottom: 20px;
+        }
+
+        .hero-section p {
+          font-size: 1.5rem;
+          margin-bottom: 30px;
+        }
+
+        /* Buttons in hero */
+        .nav-buttons a {
+          font-weight: 600;
+          padding: 14px 36px;
+          border-radius: 50px;
+          transition: all 0.3s ease-in-out;
+          text-decoration: none;
+          margin: 0 12px;
+          font-size: 1.1rem;
+        }
+
+        .btn-menu {
+          background-color: #0a1a2b;
+          color: white;
+          border: 2px solid #0a1a2b;
+        }
+
+        .btn-menu:hover {
+          background-color: #071224;
+        }
+
+        .btn-cart {
+          background-color: transparent;
+          color: #0a1a2b;
+          border: 2px solid #0a1a2b;
+          padding: 10px 24px;
+          border-radius: 8px;
+          font-weight: bold;
+          transition: all 0.3s ease;
+          text-transform: uppercase;
+        }
+
+        .btn-cart:hover {
+          background-color: #0a1a2b;
+          color: white;
+        }
+
+        /* Craving Image */
+        .craving-image {
+          width: 100%;
+          max-width: 800px;
+          display: block;
+          margin: 0 auto 50px auto;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+        }
+
+        .craving-image:hover {
+          transform: scale(1.03);
+        }
+
+        /* ========= Category Cards ========= */
+        .category-card {
+          border-radius: 15px;
+          overflow: hidden;
+          background-color: white;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+          transition: transform 0.3s, box-shadow 0.3s;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .category-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .category-card img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          display: block;
+          border-bottom: 1px solid #eee;
+        }
+
+        .category-card h5 {
+          margin: 15px;
+          text-align: center;
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: #424242;
+        }
+
+        /* ========= Clients Section ========= */
+        .clients-section {
+          text-align: center;
+          margin-bottom: 60px;
+          position: relative;
+          padding-bottom: 120px;
+          background: #f9f9f9;
+        }
+
+        .clients-section h2 {
+          margin-bottom: 40px;
+          font-weight: 700;
+          font-size: 2rem;
+          color: #333;
+        }
+
+        .clients-logos {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          flex-wrap: wrap;
+          align-items: center;
+          max-width: 900px;
+          margin: 0 auto 40px auto;
+        }
+
+        .client-logo {
+          width: 120px;
+          height: 120px;
+          background: white;
+          border-radius: 50%;
+          overflow: hidden;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease;
+        }
+
+        .client-logo img {
+          width: 80px;
+          height: 80px;
+          object-fit: contain;
+          border-radius: 50%;
+        }
+
+        .client-logo:hover {
+          transform: scale(1.1);
+        }
+
+        /* ========= Animated Waves ========= */
+        .waves {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 120px;
+          pointer-events: none;
+        }
+
+        .moving-waves use {
+          animation: waveMove 10s linear infinite;
+        }
+
+        @keyframes waveMove {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-160px); }
+        }
+      </style>
+
+      <div class="container mt-4 mb-4 d-flex align-items-center justify-content-between">
+        <!-- Optional Logo -->
+      </div>
+
+      <div class="container mt-5">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <h1>Welcome to FOODICTED🤤</h1>
+          <p>Craving something tasty? Order fresh, hot meals online!</p>
+          <img class="craving-image" src="/food_ordering/static/img/craving_meal.jpg" alt="Craving Meal"/>
+          <div class="nav-buttons">
+            <a href="/menu" class="btn-menu">Explore Menu</a>
+            <a href="/cart" class="btn-cart">My Cart</a>
+          </div>
+        </section>
+
+        <!-- Categories Grid -->
+        <section class="mt-5">
+  <h2 class="text-center mb-4">Explore Categories</h2>
+  <div class="row">
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=4" class="category-card">
+        <img src="/food_ordering/static/img/cake.jpg" alt="Cake" />
+        <h5>Cake</h5>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=5" class="category-card">
+        <img src="/food_ordering/static/img/burger.jpg" alt="Cheese Burger" />
+        <h5>Cheese Burger</h5>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=3" class="category-card">
+        <img src="/food_ordering/static/img/pizza.jpg" alt="Beef Pizza" />
+        <h5>Beef Pizza</h5>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=6" class="category-card">
+        <img src="/food_ordering/static/img/waffle.jpg" alt="Waffle" />
+        <h5>Waffle</h5>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=2" class="category-card">
+        <img src="/food_ordering/static/img/pasta.jpg" alt="Pasta" />
+        <h5>Pasta</h5>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=10" class="category-card">
+        <img src="/food_ordering/static/img/noodel.jpg" alt="Noodles" />
+        <h5>Noodles</h5>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <a href="/menu?category_id=8" class="category-card">
+        <img src="/food_ordering/static/img/sandwich.jpg" alt="Sandwich" />
+        <h5>Sandwich</h5>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+        <!-- Sign In / Sign Up Buttons Section -->
+        <section class="auth-buttons-section" style="text-align:center; margin: 40px 0;">
+          <div class="nav-buttons d-inline-block">
+            <a href="/web/login" class="btn-menu me-3">Sign In</a>
+            <a href="/web/signup" class="btn-cart">Sign Up</a>
+          </div>
+        </section>
+
+<!-- Clients Section -->
+<section class="clients-section" style="margin-top: 60px;">
+  <h2>Restaurants</h2>
+  <div class="clients-logos-wrapper">
+    <div class="clients-logos">
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/bakery.jpg" alt="Client 1" />
+      </div>
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/bistro.jpg" alt="Client 2" />
+      </div>
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/capcakelogo.jpg" alt="Client 3" />
+      </div>
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/kfc.jpg" alt="Client 4" />
+      </div>
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/pastalogo.jpg" alt="Client 5" />
+      </div>
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/pizzahut.jpg" alt="Client 6" />
+      </div>
+      <div class="client-logo">
+        <img src="/food_ordering/static/img/mcdonalds.jpg" alt="Client 7" />
+      </div>
+    </div> <!-- ✅ CLOSE clients-logos -->
+  </div> <!-- ✅ CLOSE clients-logos-wrapper -->
+
+  <!-- Animated SVG Waves -->
+  <svg class="waves moving-waves" xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <defs>
+      <path id="wavePath" d="M0,40 C360,100 1080,-20 1440,60 L1440,120 L0,120 Z" />
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#wavePath" fill="rgba(10,26,43,0.6)" />
+      <use xlink:href="#wavePath" fill="rgba(10,26,43,0.4)" y="10" />
+      <use xlink:href="#wavePath" fill="rgba(10,26,43,0.2)" y="20" />
+      <use xlink:href="#wavePath" fill="#0a1a2b" y="30" />
+    </g>
+  </svg>
+</section>
+
+
+      </div>
+    </t>
+  </template>
+</odoo>

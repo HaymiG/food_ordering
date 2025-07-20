@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_food_ordering_restaurant,access_food_ordering_restaurant,model_food_ordering_restaurant,,1,1,1,1
+access_food_ordering_food_category,access_food_ordering_food_category,model_food_ordering_food_category,,1,1,1,1
+access_food_ordering_food_item,access_food_ordering_food_item,model_food_ordering_food_item,,1,1,1,1
+access_food_ordering_customization_option,access_food_ordering_customization_option,model_food_ordering_customization_option,,1,1,1,1
+access_food_ordering_promo_code,access_food_ordering_promo_code,model_food_ordering_promo_code,,1,1,1,1
+access_food_ordering_order,access_food_ordering_order,model_food_ordering_order,,1,1,1,1
+access_food_ordering_order_line,access_food_ordering_order_line,model_food_ordering_order_line,,1,1,1,1
+access_food_ordering_payment,access_food_ordering_payment,model_food_ordering_payment,,1,1,1,1

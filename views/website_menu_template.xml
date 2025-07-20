@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="test_menu_page" name="Test Menu Page" t-name="food_ordering.test_menu_page">
+    <t t-call="website.layout">
+      <div class="container my-5">
+        <h1>Test Menu</h1>
+        <p>This is a test.</p>
+      </div>
+    </t>
+  </template>
+</odoo>
+

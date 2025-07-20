@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <template id="menu_page" name="Menu Page" t-name="food_ordering.menu_page">
+    <t t-call="website.layout">
+
+      <div class="container my-5">
+        <h1 class="mb-4 fw-bold text-center" style="color: #0a1a2b;">Food Menu</h1>
+    
+
+
+        <!-- Filter Form -->
+        <form method="get" action="/menu" class="row g-3 mb-5 bg-light p-4 rounded shadow-sm border border-2" style="border-color: #0a1a2b;">
+          <div class="col-md-3">
+            <select name="category_id" class="form-select border border-primary rounded-pill px-3 py-2">
+              <option value="">All Categories</option>
+              <t t-foreach="categories" t-as="category">
+                <option t-att-value="category.id" t-att-selected="category.id == selected_category">
+                  <t t-esc="category.name"/>
+                </option>
+              </t>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="search" class="form-control border border-primary rounded-pill px-3 py-2"
+                   placeholder="Search..." t-att-value="search_term or ''"/>
+          </div>
+          <div class="col-md-2">
+            <input type="number" step="0.01" name="price_min" class="form-control border border-primary rounded-pill px-3 py-2"
+                   placeholder="Min Price" t-att-value="price_min or ''"/>
+          </div>
+          <div class="col-md-2">
+            <input type="number" step="0.01" name="price_max" class="form-control border border-primary rounded-pill px-3 py-2"
+                   placeholder="Max Price" t-att-value="price_max or ''"/>
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn w-100 rounded-pill px-4 py-2 fw-semibold text-white" style="background-color: #0a1a2b;">Filter</button>
+          </div>
+        </form>
+
+        <!-- Food Items List -->
+        <div class="row">
+          <t t-if="food_items">
+            <t t-foreach="food_items" t-as="item">
+              <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow border border-3" style="border-color: #0a1a2b; border-radius: 20px;">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary"><t t-esc="item.name"/></h5>
+                    <p class="card-text text-muted"><t t-esc="item.description or ''"/></p>
+                    <p class="card-text"><strong>Price:</strong> <t t-esc="item.price"/> Birr</p>
+                    <form method="post" t-att-action="'/cart/add/%d' % item.id">
+                      <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                      <input type="hidden" name="quantity" value="1"/>
+                      <button type="submit" class="btn w-100 rounded-pill text-white fw-semibold" style="background-color: #0a1a2b;">Add to Cart</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </t>
+          <t t-else="">
+            <div class="text-center">
+              <p class="text-muted">No items found matching your criteria.</p>
+              <a href="/menu" class="btn btn-outline-primary rounded-pill">Reset Filters</a>
+            </div>
+          </t>
+        </div>
+      </div>
+
+    </t>
+  </template>
+
+  <template id="cart_page" name="Cart Page">
+    <t t-call="website.layout">
+      <div class="container my-5">
+        <h1 class="text-primary fw-bold">Your Cart</h1>
+
+        <t t-if="success_msg">
+          <div class="alert alert-success"><t t-esc="success_msg"/></div>
+        </t>
+
+        <t t-if="not cart or len(cart) == 0">
+          <p>Your cart is empty.</p>
+          <a href="/menu" class="btn btn-dark">Go to Menu</a>
+        </t>
+
+        <t t-else="">
+          <table class="table table-bordered border-primary" id="cart-table">
+            <thead class="table-primary">
+              <tr>
+                <th>Food Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="food_items" t-as="item">
+                <tr>
+                  <td><t t-esc="item.name"/></td>
+                  <!-- Quantity as plain text -->
+                  <td><t t-esc="cart.get(str(item.id), 1)"/></td>
+                  <td><t t-esc="item.price"/> Birr</td>
+                  <td><t t-esc="item.price * cart.get(str(item.id), 1)"/> Birr</td>
+                  <td>
+                    <a t-att-href="'/cart/remove/%d' % item.id" class="btn btn-danger btn-sm">Remove</a>
+                  </td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-end mt-3">
+            <h4>Total: <span id="total-amount"><t t-esc="total"/></span> Birr</h4>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a href="/menu" class="btn btn-secondary">Continue Shopping</a>
+            <a href="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+          </div>
+        </t>
+      </div>
+    </t>
+  </template>
+
+  <template id="checkout_page" name="Checkout Page">
+    <t t-call="website.layout">
+      <div class="container my-5">
+        <h1>Confirm Your Order</h1>
+
+        <t t-if="not cart">
+          <p>Your cart is empty.</p>
+          <a href="/menu" class="btn btn-primary">Back to Menu</a>
+        </t>
+
+        <t t-else="">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="food_items" t-as="item">
+                <tr>
+                  <td><t t-esc="item.name"/></td>
+                  <td><t t-esc="cart.get(str(item.id), 0)"/></td>
+                  <td><t t-esc="item.price"/> Birr</td>
+                  <td><t t-esc="item.price * cart.get(str(item.id), 0)"/> Birr</td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+          <h4>Total: <t t-esc="total"/> Birr</h4>
+
+          <form action="/checkout/confirm" method="post">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+            <div class="mb-3">
+              <label for="delivery_address" class="form-label">Delivery Address</label>
+              <textarea name="delivery_address" id="delivery_address" class="form-control" rows="3" required="required" placeholder="Enter your delivery address here"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="payment_method" class="form-label">Select Payment Method</label>
+              <select name="payment_method" id="payment_method" class="form-select" required="required">
+                <option value="cash">Cash</option>
+                <option value="telebirr">TeleBirr</option>
+                <option value="cbe">CBE Birr</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Confirm Order</button>
+          </form>
+        </t>
+      </div>
+    </t>
+  </template>
+
+  <template id="order_confirmation" name="Order Confirmation">
+    <t t-call="website.layout">
+      <div class="container my-5">
+        <h1>Thank You!</h1>
+        <p>Your order has been received.</p>
+        <a href="/menu" class="btn btn-primary">Order Again</a>
+      </div>
+    </t>
+  </template>
+
+</odoo>  

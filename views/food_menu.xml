@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!-- Action for Food Items -->
+    <record id="action_food_items" model="ir.actions.act_window">
+      <field name="name">Food Items</field>
+      <field name="res_model">food_ordering.food_item</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Orders -->
+    <record id="action_orders" model="ir.actions.act_window">
+      <field name="name">Orders</field>
+      <field name="res_model">food_ordering.order</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_food_root" name="Food Ordering" sequence="10"/>
+
+    <!-- Submenu: Food Items -->
+    <menuitem id="menu_food_items"
+          name="Food Items"
+          parent="menu_food_root"
+          action="action_food_items"
+          sequence="10"/>
+
+    <!-- Submenu: Orders -->
+    <menuitem id="menu_orders"
+          name="Orders"
+          parent="menu_food_root"
+          action="action_orders"
+          sequence="20"/>
+
+  </data>
+</odoo>
+
+

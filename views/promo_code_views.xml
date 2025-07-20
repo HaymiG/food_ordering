@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_promo_code_tree" model="ir.ui.view">
+        <field name="name">promo.code.tree</field>
+        <field name="model">food_ordering.promo_code</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="discount_percent"/>
+                <field name="valid_from"/>
+                <field name="valid_to"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_promo_code_form" model="ir.ui.view">
+        <field name="name">promo.code.form</field>
+        <field name="model">food_ordering.promo_code</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="discount_percent"/>
+                        <field name="valid_from"/>
+                        <field name="valid_to"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
