@@ -1,0 +1,15 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+# Ignore IDE/editor settings
+.idea/
+.vscode/
+
+# Ignore backup and temp files
+*~
+*.log
+*.db
+*.db-journal
+.DS_Store
+
