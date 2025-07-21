@@ -30,4 +30,4 @@ A fully functional food ordering website module built for Odoo 17. This module a
 1. **Clone the repository or copy the module folder** into your Odoo `custom_addons` directory:
 
    ```bash
-   git clone https://github.com/your-username/food_ordering.git
+   git clone https://github.com/HaymiG/food_ordering.git
