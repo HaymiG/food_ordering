@@ -195,7 +195,7 @@
           <img class="craving-image" src="/food_ordering/static/img/craving_meal.jpg" alt="Craving Meal"/>
           <div class="nav-buttons">
             <a href="/menu" class="btn-menu">Explore Menu</a>
-            <a href="/cart" class="btn-cart">My Cart</a>
+            <a href="/order_page" class="btn-cart">My Cart</a>
           </div>
         </section>
 
